@@ -1,0 +1,6 @@
+import deck
+
+deck_of_cards = deck.CardDeck()
+
+print(deck_of_cards)
+print(len(deck_of_cards))
