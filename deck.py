@@ -1,4 +1,4 @@
-import random
+from itertools import product
 
 
 class CardDeck(object):
@@ -7,25 +7,21 @@ class CardDeck(object):
 
     __faces = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
 
-    __deck = {}
-
-    __shuffled_keys = []
+    __deck = []
 
     def __init__(self):
 
-        for suite in CardDeck.__suites:
-            for i, face in enumerate(CardDeck.__faces):
-                key = '{} of {}'.format(face, suite)
-                self.__deck[key] = i+1 if i+1 < 10 else 10
-
-        # pre-shuffle deck upon instantiation
-        self.shuffle_deck()
+        self.__deck = list(product(CardDeck.__faces,CardDeck.__suites))
 
     def __len__(self):
         return len(self.__deck)
 
     def __str__(self):
-        return str(list(self.__deck.items()))
+        return str(self.__deck)
 
-    def shuffle_deck(self):
-        __shuffled_keys = random.shuffle(list(self.__deck.keys()))
+    def __getitem__(self, item):
+        return self.__deck[item]
+
+    def __setitem__(self, key, value):
+        self.__deck[key] = value
+

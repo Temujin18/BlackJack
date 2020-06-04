@@ -1,6 +1,6 @@
 import deck
+import dealer
 
 deck_of_cards = deck.CardDeck()
 
-print(deck_of_cards)
-print(len(deck_of_cards))
+dealer = dealer.Dealer(deck_of_cards)
