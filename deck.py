@@ -5,9 +5,7 @@ class CardDeck(object):
 
     __suites = ['hearts', 'spades', 'clubs', 'diamonds']
 
-    __faces = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
-
-    __deck = []
+    __faces = ['ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king']
 
     def __init__(self):
 
@@ -24,4 +22,10 @@ class CardDeck(object):
 
     def __setitem__(self, key, value):
         self.__deck[key] = value
+
+    def pop(self):
+        return self.__deck.pop()
+
+    def empty(self):
+        return len(self.__deck) == 0
 
