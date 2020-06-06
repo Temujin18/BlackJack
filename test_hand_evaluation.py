@@ -25,6 +25,9 @@ class TestBlackJack(unittest.TestCase):
         hand = [('ace', 'hearts'), ('king', 'diamonds'), ('ace', 'clubs')]
         self.assertEqual(Dealer.evaluate_hand_blackjack(hand), 12)
 
+    def test_acecombi2_hand(self):
+        hand = [('ace', 'hearts'), ('king', 'diamonds'), (6, 'clubs')]
+        self.assertEqual(Dealer.evaluate_hand_blackjack(hand), 17)
 
 if __name__ == '__main__':
     unittest.main()
