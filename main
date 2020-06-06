@@ -7,13 +7,13 @@ deck_of_cards = deck.CardDeck()
 dealer = dealer.Dealer(deck_of_cards)
 
 
-def check_hand_value(obj, hand_value):
-    if hand_value > 21:
-        print('{} is bust!'.format(obj.__name__))
-    elif hand_value == 21:
-        print('{} wins! BlackJack!'.format(obj.__name__))
+def check_dealer_against_player(dealer, player):
+    if dealer.evaluate_hand_blackjack(player.hand) > dealer.evaluate_hand_blackjack(dealer.hand):
+        print('Player wins!')
+    elif dealer.evaluate_hand_blackjack(dealer.hand) == dealer.evaluate_hand_blackjack(player.hand):
+        print('Push! Neither wins!')
     else:
-        pass
+        print('Dealer wins!')
 
 
 def main():
@@ -42,31 +42,23 @@ def main():
             print('Player has chosen to stand.')
             print('Dealer hand is {} Value: {}'.format(dealer.show_hand(),
                                                        dealer.evaluate_hand_blackjack(dealer.hand)))
-            while dealer.evaluate_hand_blackjack(dealer.hand) < 16:
-                print('Dealer hand is less than 16, drawing another card for dealer.')
+            while dealer.evaluate_hand_blackjack(dealer.hand) <= 16:
+                print('Dealer hand is less than 17, drawing another card for dealer.')
                 dealer.add_to_hand(dealer.draw_card())
                 print('Dealer hand is {} Value: {}'.format(dealer.show_hand(),
                                                            dealer.evaluate_hand_blackjack(dealer.hand)))
-                if dealer.evaluate_hand_blackjack(dealer.hand) > 21:
-                    print('Dealer is bust!')
-                    print('Player wins!')
-                    return
-
-            print('Final Dealer hand is {} Value: {}'.format(dealer.show_hand(),
-                                                             dealer.evaluate_hand_blackjack(dealer.hand)))
-
-            if dealer.evaluate_hand_blackjack(player.hand) > dealer.evaluate_hand_blackjack(dealer.hand):
+            if dealer.evaluate_hand_blackjack(dealer.hand) > 21:
+                print('Dealer is bust!')
                 print('Player wins!')
-                return
-            elif dealer.evaluate_hand_blackjack(dealer.hand) == dealer.evaluate_hand_blackjack(player.hand):
-                print('Push! Neither wins!')
-                return
-            else:
-                print('Dealer wins!')
-                return
-            
+                break
+
+            check_dealer_against_player(dealer, player)
+            break
+
     if dealer.evaluate_hand_blackjack(player.hand) > 21:
         print('Player is bust!')
+    elif dealer.evaluate_hand_blackjack(player.hand) == 21:
+        print('BlackJack! Player wins!')
 
 
 if __name__ == '__main__':
