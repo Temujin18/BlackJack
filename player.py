@@ -11,4 +11,4 @@ class Player:
             self.hand.append(card)
 
     def show_hand(self):
-        return self.hand
+        return ', '.join(list(map(str, self.hand)))

@@ -20,21 +20,24 @@ class Dealer(object):
         for card in cards:
             self.hand.append(card)
 
+    def show_initial_hand(self):
+        return str(self.hand[0])
+
     def show_hand(self):
-        return self.hand
+        return ', '.join(list(map(str, self.hand)))
 
     @staticmethod
     def evaluate_hand_blackjack(hand):
         hand_value: int = 0
         aces = []
         for card in hand:
-            if card[0] == 'ace':
+            if card.face == 'ace':
                 aces.append(card)
                 hand_value += 1  # consider all aces as having a value of 1, initially.
-            elif card[0] in ['jack', 'queen', 'king']:
+            elif card.face in ['jack', 'queen', 'king']:
                 hand_value += 10
             else:
-                hand_value += card[0]
+                hand_value += card.face
 
         # for each ace in hand, add 10 to hand_value while hand_value is less than 12, so as not to go bust/over 21.
         if aces:

@@ -1,5 +1,16 @@
 from itertools import product
 
+class Card():
+
+    def __init__(self, suit, face):
+
+        __slots__ = (suit, face)
+
+        self.suit = suit
+        self.face = face
+
+    def __str__(self):
+        return '{} of {}'.format(self.face, self.suit)
 
 class CardDeck(object):
 
@@ -9,7 +20,7 @@ class CardDeck(object):
 
     def __init__(self):
 
-        self.__deck = list(product(CardDeck.__faces,CardDeck.__suites))
+        self.__deck = [Card(suit, face) for face, suit in product(CardDeck.__faces,CardDeck.__suites)]
 
     def __len__(self):
         return len(self.__deck)
