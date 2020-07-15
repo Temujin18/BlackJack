@@ -2,7 +2,7 @@ from itertools import product
 
 class Card():
 
-    def __init__(self, suit, face):
+    def __init__(self, face, suit):
 
         __slots__ = (suit, face)
 
@@ -20,7 +20,7 @@ class CardDeck(object):
 
     def __init__(self):
 
-        self.__deck = [Card(suit, face) for face, suit in product(CardDeck.__faces,CardDeck.__suites)]
+        self.__deck = [Card(suit, face) for face, suit in product(CardDeck.__suites,CardDeck.__faces)]
 
     def __len__(self):
         return len(self.__deck)

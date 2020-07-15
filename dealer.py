@@ -42,7 +42,9 @@ class Dealer(object):
         # for each ace in hand, add 10 to hand_value while hand_value is less than 12, so as not to go bust/over 21.
         if aces:
             for _ in aces:
-                while hand_value < 12:
+                if hand_value < 12:
                     hand_value += 10
+                else:
+                    break
 
         return hand_value

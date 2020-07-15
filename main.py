@@ -37,7 +37,7 @@ def main():
 
         if is_player_hit == 'h':
             player.add_to_hand(dealer.draw_card())
-            print('Player hand is now {} Value: {}'.format(player.show_hand, dealer.evaluate_hand_blackjack(player.hand)))
+            print('Player hand is now {} Value: {}'.format(player.show_hand(), dealer.evaluate_hand_blackjack(player.hand)))
         else:
             print('Player has chosen to stand.')
             print('Dealer hand is {} Value: {}'.format(dealer.show_hand(),
